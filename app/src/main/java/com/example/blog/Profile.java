@@ -234,6 +234,7 @@ public class Profile extends AppCompatActivity {
 
     public void  ClickHome(View view){
         //Recreate activity
+        Profile.this.finish();
         Home.redirectActivity(this , Home.class);
     }
 
@@ -241,20 +242,22 @@ public class Profile extends AppCompatActivity {
 
     public void  ClickProfile (View view){
         //Redirect activity to dashbord
+
         Home.redirectActivity(this , Profile.class);
 
     }
 
 
     public void  ClickAdboutUS (View view){
-        //Redirect activity to dashbord
-        Home.redirectActivity(this , Profile.class);
+        //Redirect activity to
+        Profile.this.finish();
+        Home.redirectActivity(this , AboutUs.class);
 
     }
 
     public void  LogOut (View view){
-        //Redirect activity to dashbord
-        Home.redirectActivity(this , Profile.class);
+        Profile.this.finish();
+Home.Logouts(this);
 
     }
 

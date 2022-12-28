@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -256,27 +258,70 @@ public class Home extends AppCompatActivity {
 
     public  void  ClickDashboard(View view){
         //Redirect activity to dashbord
+        Home.this.finish();
         redirectActivity(this , Home.class);
     }
 
 
     public void  ClickProfile (View view){
         //Redirect activity to dashbord
+        Home.this.finish();
+
         redirectActivity(this , Profile.class);
-        Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
     }
 
 
     public void  ClickAdboutUS (View view){
         //Redirect activity to dashbord
+        Home.this.finish();
+
         redirectActivity(this , AboutUs.class);
-        Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
     }
 
     public void  LogOut (View view){
-        //Redirect activity to dashbord
-        redirectActivity(this , Profile.class);
-        Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
+        //Close App
+
+
+        Logouts(this);
+
+    }
+
+    public static void Logouts(Activity activity) {
+        //Initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        //set title
+        builder.setTitle("LogOut");
+        //set message
+        builder.setMessage("Are you sure you want to logout ?");
+        //Positive yes button
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+
+
+                //Exit app
+                System.exit(0);
+            }
+        });
+        //Negative button
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Dismiss dialog
+                dialogInterface.dismiss();
+            }
+        });
+
+        //show dialog
+
+        builder.show();
+
+
+
     }
 
     public static   void redirectActivity(Activity activity, Class aclass) {
@@ -291,7 +336,11 @@ public class Home extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CloseDrawer(drawerlayout);
+    }
 
     /*-----------------     floating Button animation               -------------------------*/
 

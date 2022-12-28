@@ -1,6 +1,8 @@
 package com.example.blog;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,11 +12,13 @@ import android.widget.Button;
 
 public class AboutUs extends AppCompatActivity {
 
+    private DrawerLayout drawerlayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-
+        drawerlayout = findViewById(R.id.drawerlayout);
         Button btnFacebook = findViewById(R.id.btnFacebook);
         Button btnFacebook2 = findViewById(R.id.btnFacebook2);
         Button btnFacebook3 = findViewById(R.id.btnFacebook3);
@@ -106,6 +110,56 @@ public class AboutUs extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:"+s));
         startActivity(intent);
+    }
+
+
+    public void  ClickMenu(View view){
+        //Open dramer
+        openDrawer(drawerlayout);
+    }
+
+    private void openDrawer(DrawerLayout drawerlayout) {
+        // Open drawer layout
+        drawerlayout.openDrawer(GravityCompat.START);
+    }
+
+    public void  ClickLogo(View view){
+        //Recreate activity
+        Home.CloseDrawer(drawerlayout);
+    }
+
+
+
+    public void  ClickHome(View view){
+        //Recreate activity
+        AboutUs.this.finish();
+        Home.redirectActivity(this , Home.class);
+    }
+
+
+
+    public void  ClickProfile (View view){
+        //Redirect activity to dashbord
+        AboutUs.this.finish();
+
+        Home.redirectActivity(this , Profile.class);
+
+    }
+
+
+    public void  ClickAdboutUS (View view){
+        //Redirect activity to dashbord
+        AboutUs.this.finish();
+
+        Home.redirectActivity(this , AboutUs.class);
+
+    }
+
+    public void  LogOut (View view){
+        AboutUs.this.finish();
+
+        Home.Logouts(this);
+
     }
 
 
